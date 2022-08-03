@@ -1,62 +1,29 @@
 package com.gildedrose;
 
+import java.util.Map;
+
+/**
+ *  FIXME: 7/28/22
+ *  1) Add tests
+ *  2) Create an interface with conjured items
+ *  3) Commit every successful change
+ *  4) Separate calculate quality from calculate sell in
+ */
 class GildedRose {
     Item[] items;
+    Map<String, Boolean> conjuredItems;
 
-    public GildedRose(Item[] items) {
+    private final ItemUpdater itemUpdater;
+
+    public GildedRose(Item[] items, Map<String, Boolean> conjuredItems, ItemUpdater itemUpdater) {
         this.items = items;
+        this.conjuredItems = conjuredItems;
+        this.itemUpdater = itemUpdater;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
-
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
+        for (Item item : items) {
+            itemUpdater.update(item, conjuredItems.getOrDefault(item.name, false));
         }
     }
 }
