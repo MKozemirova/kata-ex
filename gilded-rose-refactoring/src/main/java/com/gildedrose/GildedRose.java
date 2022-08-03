@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  *  FIXME: 7/28/22
@@ -11,11 +12,11 @@ import java.util.Map;
  */
 class GildedRose {
     Item[] items;
-    Map<String, Boolean> conjuredItems;
+    Set<String> conjuredItems;
 
     private final ItemUpdater itemUpdater;
 
-    public GildedRose(Item[] items, Map<String, Boolean> conjuredItems, ItemUpdater itemUpdater) {
+    public GildedRose(Item[] items, Set<String> conjuredItems, ItemUpdater itemUpdater) {
         this.items = items;
         this.conjuredItems = conjuredItems;
         this.itemUpdater = itemUpdater;
@@ -23,7 +24,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            itemUpdater.update(item, conjuredItems.getOrDefault(item.name, false));
+            itemUpdater.update(item, conjuredItems.contains(item.name));
         }
     }
 }
