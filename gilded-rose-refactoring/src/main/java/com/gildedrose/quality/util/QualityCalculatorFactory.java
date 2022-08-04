@@ -24,7 +24,7 @@ public class QualityCalculatorFactory {
                 new AgedBrieQualityCalculator(),
                 new BackstagePassesQualityCalculator(),
                 new SulfurasQualityCalculator());
-        defaultQC = new DefaultQualityCalculator()
+        defaultQC = new DefaultQualityCalculator();
     }
 
     public static QualityCalculatorFactory getInstance() {
