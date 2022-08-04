@@ -13,8 +13,6 @@ public class QualityService {
 
     public int calculateDelta(Item item) {
         QualityCalculator qualityCalculator = calculatorFactory.getCalculator((item.name));
-        int initialDelta = qualityCalculator.calculateDelta(item.quality, item.sellIn);
-
-        return item.name.contains("Conjured") ? initialDelta*2 : initialDelta;
+        return qualityCalculator.calculateDelta(item.quality, item.sellIn);
     }
 }

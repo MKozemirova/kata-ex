@@ -2,6 +2,7 @@ package com.gildedrose.quality.util;
 
 import com.gildedrose.quality.AgedBrieQualityCalculator;
 import com.gildedrose.quality.BackstagePassesQualityCalculator;
+import com.gildedrose.quality.ConjuredItemQualityCalculator;
 import com.gildedrose.quality.DefaultQualityCalculator;
 import com.gildedrose.quality.QualityCalculator;
 import com.gildedrose.quality.SulfurasQualityCalculator;
@@ -23,7 +24,8 @@ public class QualityCalculatorFactory {
         qualityCalculators = List.of(
                 new AgedBrieQualityCalculator(),
                 new BackstagePassesQualityCalculator(),
-                new SulfurasQualityCalculator());
+                new SulfurasQualityCalculator(),
+                new ConjuredItemQualityCalculator());
         defaultQC = new DefaultQualityCalculator();
     }
 
