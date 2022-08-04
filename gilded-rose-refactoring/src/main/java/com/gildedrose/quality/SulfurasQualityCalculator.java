@@ -1,14 +1,8 @@
 package com.gildedrose.quality;
 
-/**
- * todo: remove the useless class
- */
+@CustomItemCalculator
 public class SulfurasQualityCalculator implements QualityCalculator {
 
-
-    /**
-     * Hardcode this one item to avoid having 100500 mechanisms
-     */
     @Override
     public int calculateDelta(int quality, int sellIn) {
         return 0;
