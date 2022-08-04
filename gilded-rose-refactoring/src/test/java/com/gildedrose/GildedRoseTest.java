@@ -1,8 +1,8 @@
 package com.gildedrose;
 
 import com.gildedrose.quality.QualityService;
-import com.gildedrose.sellin.SellinService;
-import java.util.Set;
+import com.gildedrose.quality.util.QualityCalculatorFactory;
+import com.gildedrose.sellin.SellInService;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -204,13 +204,11 @@ class GildedRoseTest {
 
     @Test
     void conjuredItemsDegradeTwiceFaster() {
-        Item[] items = singleItem("Conjured Mana Cake", 2, 8);
+        Item[] items = singleItem("Conjured Mana Cake", 2, 3);
         ItemData[] expectedItemData = new ItemData[] {
-                new ItemData(1, 6),
-                new ItemData(0, 4),
-                new ItemData(-1, 0),
-                new ItemData(-2, 0),
-                new ItemData(-3, 0),
+                new ItemData(1, 1),
+                new ItemData(0, 0),
+                new ItemData(-1, 0)
         };
 
         GildedRose app = gildedRose(items);
@@ -226,7 +224,7 @@ class GildedRoseTest {
     }
 
     private static GildedRose gildedRose(Item[] items) {
-        return new GildedRose(items, new QualityService(), new SellinService());
+        return new GildedRose(items, new QualityService(QualityCalculatorFactory.getInstance()), new SellInService());
     }
 
     public record ItemData(int sellIn, int quality) { }

@@ -1,22 +1,21 @@
 package com.gildedrose;
 
 import com.gildedrose.quality.QualityService;
-import com.gildedrose.sellin.SellinService;
-import java.util.Set;
+import com.gildedrose.sellin.SellInService;
 
 /**
  *  FIXME: 7/28/22
- *  1) Add tests
- *  2) Create an interface with conjured items
- *  3) Commit every successful change
- *  4) Separate calculate quality from calculate sell in
+ *  1) + Add tests
+ *  2) Create an interface with conjured items - not needed
+ *  3) + Commit every successful change
+ *  4) + Separate calculate quality from calculate sell in
  */
 public class GildedRose {
     Item[] items;
     private final QualityService qualityService;
-    private final SellinService sellinService;
+    private final SellInService sellinService;
 
-    public GildedRose(Item[] items, QualityService qualityService, SellinService sellinService) {
+    public GildedRose(Item[] items, QualityService qualityService, SellInService sellinService) {
         this.items = items;
         this.qualityService = qualityService;
         this.sellinService = sellinService;

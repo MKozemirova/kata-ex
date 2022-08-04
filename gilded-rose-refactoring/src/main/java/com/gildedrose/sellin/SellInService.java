@@ -2,7 +2,7 @@ package com.gildedrose.sellin;
 
 import com.gildedrose.Item;
 
-public class SellinService {
+public class SellInService {
 
     public int calculateDelta(Item item) {
         if(item.name.equals("Sulfuras, Hand of Ragnaros")) {
