@@ -1,11 +1,12 @@
-package com.gildedrose;
+package com.gildedrose.sellin;
 
-public class SellinCalculator implements GildedRoseCalculator {
+import com.gildedrose.GildedRoseItem;
 
-    @Override
+public class SellinService {
+
     public int calculateDelta(GildedRoseItem item) {
         if(item.getName().equals("Sulfuras, Hand of Ragnaros")) {
-            return item.getSellIn();
+            return 0;
         }
         return -1;
     }

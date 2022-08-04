@@ -1,6 +1,7 @@
 package com.gildedrose;
 
-import java.util.HashMap;
+import com.gildedrose.quality.QualityService;
+import com.gildedrose.sellin.SellinService;
 import java.util.HashSet;
 
 public class TexttestFixture {
@@ -19,7 +20,7 @@ public class TexttestFixture {
                 // this conjured item does not work properly yet
                 new Item("Conjured Mana Cake", 3, 6) };
 
-        GildedRose app = new GildedRose(items, new HashSet<>(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, new HashSet<>(), new QualityService(), new SellinService());
 
         int days = 2;
         if (args.length > 0) {

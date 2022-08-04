@@ -1,7 +1,8 @@
 package com.gildedrose;
 
+import com.gildedrose.quality.QualityService;
+import com.gildedrose.sellin.SellinService;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ class GildedRoseTest {
     @Test
     void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items, new HashSet<>(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, new HashSet<>(), new QualityService(), new SellinService());
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
     }
@@ -33,7 +34,7 @@ class GildedRoseTest {
                 new ItemData(-5, 0)
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -53,7 +54,7 @@ class GildedRoseTest {
                 new ItemData(-2, 50),
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -73,7 +74,7 @@ class GildedRoseTest {
                 new ItemData(0, 80)
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -93,7 +94,7 @@ class GildedRoseTest {
                 new ItemData(10, 15)
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -114,7 +115,7 @@ class GildedRoseTest {
                 new ItemData(5, 20)
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -136,7 +137,7 @@ class GildedRoseTest {
                 new ItemData(-2, 0)
         };
 
-        GildedRose app = new GildedRose(items, Collections.emptySet(), new ItemUpdater());
+        GildedRose app = new GildedRose(items, Collections.emptySet(), new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);
@@ -158,7 +159,7 @@ class GildedRoseTest {
                 new ItemData(-3, 0),
         };
 
-        GildedRose app = new GildedRose(items, conjuredItems, new ItemUpdater());
+        GildedRose app = new GildedRose(items, conjuredItems, new QualityService(), new SellinService());
         for (ItemData expectedItem : expectedItemData) {
             app.updateQuality();
             assertEquals(expectedItem.sellin(), items[0].sellIn);

@@ -20,4 +20,8 @@ public class GildedRoseItem {
     public int getSellIn() {
         return item.sellIn;
     }
+
+    public int getQuality() {
+        return item.quality;
+    }
 }

@@ -1,6 +1,7 @@
 package com.gildedrose;
 
-import java.util.Map;
+import com.gildedrose.quality.QualityService;
+import com.gildedrose.sellin.SellinService;
 import java.util.Set;
 
 /**
@@ -14,17 +15,21 @@ class GildedRose {
     Item[] items;
     Set<String> conjuredItems;
 
-    private final ItemUpdater itemUpdater;
+    private final QualityService qualityService;
+    private final SellinService sellinService;
 
-    public GildedRose(Item[] items, Set<String> conjuredItems, ItemUpdater itemUpdater) {
+    public GildedRose(Item[] items, Set<String> conjuredItems, QualityService qualityService, SellinService sellinService) {
         this.items = items;
         this.conjuredItems = conjuredItems;
-        this.itemUpdater = itemUpdater;
+        this.qualityService = qualityService;
+        this.sellinService = sellinService;
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            itemUpdater.update(item, conjuredItems.contains(item.name));
+            GildedRoseItem gildedRoseItem = new GildedRoseItem(conjuredItems.contains(item.name), item);
+            item.quality += qualityService.calculateDelta(gildedRoseItem);
+            item.sellIn += sellinService.calculateDelta(gildedRoseItem);
         }
     }
 }
