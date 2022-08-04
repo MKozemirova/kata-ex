@@ -88,19 +88,24 @@ class GildedRoseTest {
     }
 
     @Test
-    void agedBrieQualityAlwaysLessThanFifty() {
-        Item[] items = singleItem("Aged Brie", 2, 48);
-        ItemData[] expectedItemData = new ItemData[] {
-                new ItemData(1, 49),
-                new ItemData(0, 50),
-                new ItemData(-1, 50)
+    void qualityAlwaysLessThanFifty() {
+        Item[] items = new Item[]{
+               new Item("Aged Brie", 2, 48),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 20, 48)
+        };
+        ItemData[][] expectedItemData = new ItemData[][] {
+                new ItemData[] {new ItemData(1, 49), new ItemData(19, 49)},
+                new ItemData[] {new ItemData(0, 50), new ItemData(18, 50)},
+                new ItemData[]{new ItemData(-1, 50), new ItemData(17, 50)}
         };
 
         GildedRose app = gildedRose(items);
-        for (ItemData expectedItem : expectedItemData) {
+        for (ItemData[] expectedItem : expectedItemData) {
             app.updateQuality();
-            assertEquals(expectedItem.sellIn(), items[0].sellIn);
-            assertEquals(expectedItem.quality(), items[0].quality);
+            for (int itemIndex = 0; itemIndex < items.length; itemIndex++) {
+                assertEquals(expectedItem[itemIndex].sellIn(), items[itemIndex].sellIn);
+                assertEquals(expectedItem[itemIndex].quality(), items[itemIndex].quality);
+            }
         }
     }
 
@@ -124,12 +129,12 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesIncreaseInQuality() {
-        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 13, 12);
+        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 20, 12);
 
         ItemData[] expectedItemData = new ItemData[] {
-                new ItemData(12, 13),
-                new ItemData(11, 14),
-                new ItemData(10, 15)
+                new ItemData(19, 13),
+                new ItemData(18, 14),
+                new ItemData(17, 15)
         };
 
         GildedRose app = gildedRose(items);
@@ -141,14 +146,16 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateBackStageMediumPasses() {
-        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 9, 12);
+    void backstagePassesLess10DaysIncreaseQualityTwice() {
+        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 12, 12);
 
         ItemData[] expectedItemData = new ItemData[] {
-                new ItemData(8, 14),
-                new ItemData(7, 16),
-                new ItemData(6, 18),
-                new ItemData(5, 20)
+                new ItemData(11, 13),
+                new ItemData(10, 15),
+                new ItemData(9, 17),
+                new ItemData(8, 19),
+                new ItemData(7, 21),
+                new ItemData(6, 23)
         };
 
         GildedRose app = gildedRose(items);
@@ -160,15 +167,13 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateBackStageHotPasses() {
-        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 3, 12);
+    void backstagePassesLessThan5DaysIncreaseQualityByThree() {
+        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 7, 12);
 
         ItemData[] expectedItemData = new ItemData[] {
-                new ItemData(2, 15),
-                new ItemData(1, 18),
-                new ItemData(0, 21),
-                new ItemData(-1, 0),
-                new ItemData(-2, 0)
+                new ItemData(6, 14),
+                new ItemData(5, 17),
+                new ItemData(4, 20)
         };
 
         GildedRose app = gildedRose(items);
@@ -180,9 +185,26 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateConjuredItem() {
-        Item[] items = singleItem("Conjured Item", 2, 8);
-        Set<String> conjuredItems = Set.of("Conjured Item");
+    void backstagePassesWithLessThanZeroSellInHaveZeroQuality() {
+        Item[] items = singleItem("Backstage passes to a TAFKAL80ETC concert", 2, 12);
+
+        ItemData[] expectedItemData = new ItemData[] {
+                new ItemData(1, 15),
+                new ItemData(0, 18),
+                new ItemData(-1, 0)
+        };
+
+        GildedRose app = gildedRose(items);
+        for (ItemData expectedItem : expectedItemData) {
+            app.updateQuality();
+            assertEquals(expectedItem.sellIn(), items[0].sellIn);
+            assertEquals(expectedItem.quality(), items[0].quality);
+        }
+    }
+
+    @Test
+    void conjuredItemsDegradeTwiceFaster() {
+        Item[] items = singleItem("Conjured Mana Cake", 2, 8);
         ItemData[] expectedItemData = new ItemData[] {
                 new ItemData(1, 6),
                 new ItemData(0, 4),
