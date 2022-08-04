@@ -2,14 +2,14 @@ package com.gildedrose.quality;
 
 import static com.gildedrose.quality.QualityManagerFactory.getManager;
 
-import com.gildedrose.GildedRoseItem;
+import com.gildedrose.Item;
 
 public class QualityService {
 
-    public int calculateDelta(GildedRoseItem item) {
-        QualityCalculator manager = getManager(item.getName());
-        int initialDelta = manager.calculateDelta(item.getQuality(), item.getSellIn());
+    public int calculateDelta(Item item) {
+        QualityCalculator manager = getManager(item.name);
+        int initialDelta = manager.calculateDelta(item.quality, item.sellIn);
 
-        return item.isConjured() ? initialDelta*2 : initialDelta;
+        return item.name.contains("Conjured") ? initialDelta*2 : initialDelta;
     }
 }

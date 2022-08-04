@@ -1,11 +1,11 @@
 package com.gildedrose.sellin;
 
-import com.gildedrose.GildedRoseItem;
+import com.gildedrose.Item;
 
 public class SellinService {
 
-    public int calculateDelta(GildedRoseItem item) {
-        if(item.getName().equals("Sulfuras, Hand of Ragnaros")) {
+    public int calculateDelta(Item item) {
+        if(item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return 0;
         }
         return -1;

@@ -11,25 +11,21 @@ import java.util.Set;
  *  3) Commit every successful change
  *  4) Separate calculate quality from calculate sell in
  */
-class GildedRose {
+public class GildedRose {
     Item[] items;
-    Set<String> conjuredItems;
-
     private final QualityService qualityService;
     private final SellinService sellinService;
 
-    public GildedRose(Item[] items, Set<String> conjuredItems, QualityService qualityService, SellinService sellinService) {
+    public GildedRose(Item[] items, QualityService qualityService, SellinService sellinService) {
         this.items = items;
-        this.conjuredItems = conjuredItems;
         this.qualityService = qualityService;
         this.sellinService = sellinService;
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            GildedRoseItem gildedRoseItem = new GildedRoseItem(conjuredItems.contains(item.name), item);
-            item.quality += qualityService.calculateDelta(gildedRoseItem);
-            item.sellIn += sellinService.calculateDelta(gildedRoseItem);
+            item.sellIn += sellinService.calculateDelta(item);
+            item.quality += qualityService.calculateDelta(item);
         }
     }
 }
