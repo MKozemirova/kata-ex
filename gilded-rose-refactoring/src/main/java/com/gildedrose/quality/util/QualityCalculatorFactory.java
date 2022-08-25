@@ -8,12 +8,7 @@ import com.gildedrose.quality.QualityCalculator;
 import com.gildedrose.quality.SulfurasQualityCalculator;
 import java.util.List;
 
-/**
- * TODO:
- * + 1) Create a list of all managers except DefaultItemManager and iterate to get an instance
- * + 2) If no instance -> default
- * 3) Try switch expression to not forget classes
- */
+
 public class QualityCalculatorFactory {
 
     private static QualityCalculatorFactory instance;

@@ -8,7 +8,7 @@ import com.gildedrose.configuration.ConfigReader;
 @CustomItemCalculator
 public class ConjuredItemQualityCalculator implements QualityCalculator {
 
-    private static AppConfig config = AppConfig.getInstance(ConfigReader.getInstance());
+    private static final AppConfig config = AppConfig.getInstance(ConfigReader.getInstance());
     @Override
     public int calculateDelta(int quality, int sellIn) {
         if (quality > config.getMinQuality()) {

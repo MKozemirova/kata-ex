@@ -22,6 +22,7 @@ public class GildedRose {
     }
 
     public void updateQuality() {
+        //still think about separate class
         for (Item item : items) {
             item.sellIn += sellinService.calculateDelta(item);
             item.quality += qualityService.calculateDelta(item);

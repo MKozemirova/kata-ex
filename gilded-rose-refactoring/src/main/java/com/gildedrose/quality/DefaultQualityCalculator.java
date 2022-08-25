@@ -5,7 +5,7 @@ import com.gildedrose.configuration.ConfigReader;
 
 public class DefaultQualityCalculator implements QualityCalculator {
 
-    private static AppConfig config = AppConfig.getInstance(ConfigReader.getInstance());
+    private static final AppConfig config = AppConfig.getInstance(ConfigReader.getInstance());
 
     @Override
     public int calculateDelta(int quality, int sellIn) {
