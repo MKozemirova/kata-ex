@@ -7,15 +7,15 @@ import org.craftedsw.tripservicekata.trip.Trip;
 
 public class User {
 
-	private List<Trip> trips = new ArrayList<Trip>();
-	private List<User> friends = new ArrayList<User>();
-	
-	public List<User> getFriends() {
-		return friends;
-	}
-	
+	private final List<Trip> trips = new ArrayList<>();
+	private final List<User> friends = new ArrayList<>();
+
 	public void addFriend(User user) {
 		friends.add(user);
+	}
+
+	public List<User> getFriends() {
+		return friends;
 	}
 
 	public void addTrip(Trip trip) {

@@ -7,6 +7,7 @@ public class UserSession {
 	private static final UserSession userSession = new UserSession();
 	
 	private UserSession() {
+
 	}
 	
 	public static UserSession getInstance() {
